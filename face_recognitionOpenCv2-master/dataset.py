@@ -15,6 +15,35 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 ## en el set de datos
 count = 0
 
+while(True):
+    ##Creamos una variable para la imagen de la ventada donde abrira la camara
+    _, imagen_marco = web_cam.read()
+
+
+    ##Creamos una escala de grises para pasarla al marco
+    grises = cv2.cvtColor(imagen_marco, cv2.COLOR_BGR2GRAY)
+
+    ## Detectamos los rostros faceCascade es el clasificador de OpenCV y detectMultiScale es el metodo de OpenCv 
+    ##solo recive como para,etro la escala de grises
+    rostro = faceCascade.detectMultiScale(grises, 1.5, 5)
+
+    ##Cuatro variables para encerrar el rostro en un recuadro
+    for(x,y,w,h) in rostro:
+        ##Pintamos el recuadro con OpenCV y le eviamos la imagen del cuadro
+        cv2.rectangle(imagen_marco, (x,y), (x+w, y+h), (255,0,0), 4)
+        ##Iniciamos el contador y lo hacemos incremental
+        count += 1
+       
+       ##Vamos a escribir en la ruta 
+        cv2.imwrite("C:/Users/Ramses Moreno/Desktop/face_recognitionOpenCv2-master/images/ram/ram_"+str(count)+".jpg", grises[y:y+h, x:x+w])
+        ##Se abre el marco para mostrar la imagen de la camara
+        cv2.imshow("Creando Dataset", imagen_marco)
+    ##Validacion para romper el ciclo precionando la letra q
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+    ##El contador llega a 400 nos guardara esa cantidad de imagenes
+    elif count >= 400:
+        break
 
 
 ## Cuando todo esta hecho, liberamos la captura
