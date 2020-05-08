@@ -5,7 +5,8 @@ import cv2
 web_cam = cv2.VideoCapture(0)
 
 ##Ruta de nuestro achivo XML que nos ayuda a detectar rosotros de frente
-cascPath = "C:/Users/Ramses Moreno/Desktop/face_recognitionOpenCv2-master/Cascades/haarcascade_frontalface_alt2.xml"
+cascPath = "C:/Users/Ramses Moreno/Documents/GitHub/Proyecto_Desarrollo_Proyectos_inteligentes/face_recognitionOpenCv2-master/Cascades/haarcascade_frontalface_alt2.xml"
+
 ##Creamos una variable hacemos uso de OpenCV
 ##Le damos el metodo y le mandamos la ruta del archivo donde identificaremos los rostros
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -35,7 +36,8 @@ while(True):
         count += 1
        
        ##Vamos a escribir en la ruta 
-        cv2.imwrite("C:/Users/Ramses Moreno/Desktop/face_recognitionOpenCv2-master/images/ram/ram_"+str(count)+".jpg", grises[y:y+h, x:x+w])
+        cv2.imwrite("C:/Users/Ramses Moreno/Documents/GitHub/Proyecto_Desarrollo_Proyectos_inteligentes/face_recognitionOpenCv2-master/images/data"+str(count)+".jpg", grises[y:y+h, x:x+w])
+      
         ##Se abre el marco para mostrar la imagen de la camara
         cv2.imshow("Creando Dataset", imagen_marco)
     ##Validacion para romper el ciclo precionando la letra q
