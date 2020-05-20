@@ -34,4 +34,24 @@ for root, dirs, archivos in os.walk(image_dir):
             id_ = etiquetas_id[etiqueta]
             #print(etiquetas_id)
 
-          
+            pil_image = Image.open(pathImagen).convert("L")
+            tamanio = (550,550)
+            imagenFinal = pil_image.resize(tamanio, Image.ANTIALIAS)
+            image_array = np.array(pil_image,"uint8")
+            #print(image_array)
+
+            rostros = faceCascade.detectMultiScale(image_array, 1.5, 5)
+
+            for (x,y,w,h) in rostros:
+                roi = image_array[y:y+h, x:x+w]
+                x_entrenamiento.append(roi)
+                y_etiquetas.append(id_)
+
+
+#print(y_etiquetas)                
+#print(x_entrenamiento)
+with open("labels.pickle",'wb') as f:
+    pickle.dump(etiquetas_id, f)
+
+reconocimiento.train(x_entrenamiento, np.array(y_etiquetas))
+reconocimiento.save("entrenamiento.yml")
