@@ -20,3 +20,18 @@ etiquetas_id = {}
 y_etiquetas = []
 x_entrenamiento = []
 
+for root, dirs, archivos in os.walk(image_dir):
+    for archivo in archivos:
+        if archivo.endswith("png") or archivo.endswith("jpg"):
+            pathImagen = os.path.join(root,archivo)
+            etiqueta = os.path.basename(root).replace(" ", "-")#.lower()
+            #print(etiqueta,pathImagen)
+
+            #Creando las etiquetas
+            if not etiqueta in etiquetas_id:                
+                etiquetas_id[etiqueta] = current_id
+                current_id += 1            
+            id_ = etiquetas_id[etiqueta]
+            #print(etiquetas_id)
+
+          
