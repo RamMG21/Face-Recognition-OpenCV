@@ -5,6 +5,7 @@ from PIL import Image
 import pickle
 
 cascPath = "C:/Users/Ramses Moreno/Documents/GitHub/Proyecto_Desarrollo_Proyectos_inteligentes/face_recognitionOpenCv2-master/Cascades/haarcascade_frontalface_alt2.xml"
+
 ##Creamos la variable
 faceCascade = cv2.CascadeClassifier(cascPath)
 
@@ -39,7 +40,7 @@ for root, dirs, archivos in os.walk(image_dir):
 
             #abrimos la imagen
             pil_image = Image.open(pathImagen).convert("L")
-            #le damos un tamaño
+            #le damos un tamanio
             tamanio = (550,550)
             imagenFinal = pil_image.resize(tamanio, Image.ANTIALIAS)
             image_array = np.array(pil_image,"uint8")
@@ -56,6 +57,7 @@ for root, dirs, archivos in os.walk(image_dir):
 with open("labels.pickle",'wb') as f:
     #Abrimos label y en ese archivo almacenamos las etiquetas con los ID
     pickle.dump(etiquetas_id, f)
-#Hacemos el etranimiento en base al array convertdio a un array de numpy junto con las etiquetas y creamos el archivo entrenamiento.yml
+#Hacemos el etranimiento en base al array convertdio a un array de numpy junto con las etiquetas y 
+# #creamos el archivo entrenamiento.yml
 reconocimiento.train(x_entrenamiento, np.array(y_etiquetas))
 reconocimiento.save("entrenamiento.yml")

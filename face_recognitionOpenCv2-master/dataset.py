@@ -36,7 +36,7 @@ while(True):
         count += 1
        
        ##Vamos a escribir en la ruta 
-        cv2.imwrite("C:/Users/Ramses Moreno/Documents/GitHub/Proyecto_Desarrollo_Proyectos_inteligentes/face_recognitionOpenCv2-master/images/data"+str(count)+".jpg", grises[y:y+h, x:x+w])
+        cv2.imwrite("C:/Users/Ramses Moreno/Documents/GitHub/Proyecto_Desarrollo_Proyectos_inteligentes/face_recognitionOpenCv2-master/images/Ramses"+str(count)+".jpg", grises[y:y+h, x:x+w])
       
         ##Se abre el marco para mostrar la imagen de la camara
         cv2.imshow("Creando Dataset", imagen_marco)
